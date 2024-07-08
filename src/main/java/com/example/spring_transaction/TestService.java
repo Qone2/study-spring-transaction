@@ -1,7 +1,7 @@
 package com.example.spring_transaction;
 
 import com.example.spring_transaction.food.FoodService;
-import com.example.spring_transaction.user.User;
+import com.example.spring_transaction.user.entity.User;
 import com.example.spring_transaction.user.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;

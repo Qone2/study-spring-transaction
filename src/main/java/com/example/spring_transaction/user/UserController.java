@@ -1,5 +1,6 @@
 package com.example.spring_transaction.user;
 
+import com.example.spring_transaction.user.entity.User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController()

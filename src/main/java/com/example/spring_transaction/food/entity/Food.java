@@ -1,4 +1,4 @@
-package com.example.spring_transaction.food;
+package com.example.spring_transaction.food.entity;
 
 import javax.persistence.*;
 

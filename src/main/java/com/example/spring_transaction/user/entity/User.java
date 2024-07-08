@@ -1,4 +1,4 @@
-package com.example.spring_transaction.user;
+package com.example.spring_transaction.user.entity;
 
 
 import javax.persistence.*;

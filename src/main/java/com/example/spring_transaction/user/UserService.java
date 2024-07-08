@@ -1,14 +1,12 @@
 package com.example.spring_transaction.user;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.spring_transaction.user.entity.User;
+import com.example.spring_transaction.user.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
-import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,11 +17,13 @@ public class UserService {
     private final UserRepositoryEm userRepository;
     private final EntityManager em;
     private final PlatformTransactionManager transactionManager;
+    private final UserMapper userMapper;
 
-    public UserService(UserRepositoryEm userRepository, EntityManagerFactory entityManagerFactory, PlatformTransactionManager transactionManager) {
+    public UserService(UserRepositoryEm userRepository, EntityManagerFactory entityManagerFactory, PlatformTransactionManager transactionManager, UserMapper userMapper) {
         this.userRepository = userRepository;
         this.em = entityManagerFactory.createEntityManager();
         this.transactionManager = transactionManager;
+        this.userMapper = userMapper;
     }
 
 

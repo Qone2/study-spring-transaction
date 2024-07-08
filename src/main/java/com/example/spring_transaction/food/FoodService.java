@@ -1,5 +1,6 @@
 package com.example.spring_transaction.food;
 
+import com.example.spring_transaction.food.entity.Food;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
