@@ -27,13 +27,13 @@ public class UserService {
     }
 
 
-    @Transactional
     public void saveAndNotRollback() {
 
         User user = new User();
         user.setName("Not Rollback User");
 
         userMapper.insert(user);
+        throw new RuntimeException("Throwing exception");
     }
 
     @Transactional(isolation = Isolation.READ_UNCOMMITTED)
@@ -124,7 +124,7 @@ public class UserService {
         throw new RuntimeException("Intentional Exception to Rollback Transaction");
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional
     public void saveAndRollback() throws Exception {
 
         User user = new User();

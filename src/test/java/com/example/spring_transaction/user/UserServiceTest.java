@@ -19,7 +19,6 @@ class UserServiceTest {
     private UserRepository userRepository;
 
     @Test
-    @Rollback(false)
     void saveAndNotRollback() {
         userService.saveAndNotRollback();
     }
