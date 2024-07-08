@@ -33,7 +33,7 @@ public class UserService {
         User user = new User();
         user.setName("Not Rollback User");
 
-        userRepository.save(user);
+        userMapper.insert(user);
     }
 
     @Transactional(isolation = Isolation.READ_UNCOMMITTED)
@@ -141,8 +141,7 @@ public class UserService {
         User user = new User();
         user.setName("John Doe");
 
-        userRepository.save(user);
-
+        userMapper.insert(user);
     }
 
 
@@ -151,7 +150,7 @@ public class UserService {
         User user = new User();
         user.setName("John Doe");
 
-        userRepository.save(user);
+        userMapper.insert(user);
     }
 
     public long countUsers() {

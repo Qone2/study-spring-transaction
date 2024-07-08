@@ -9,9 +9,19 @@ spring:
 logging:
   level:
     org:
+      apache:
+        ibatis: debug
+      mybatis: debug
+      com:
+        example:
+          spring_transaction: debug
       springframework:
-        transaction: DEBUG
+        transaction:
+          interceptor: DEBUG
+          support: DEBUG
     sql: debug
 mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
   mapper-locations: classpath:mapper/*/*.xml
   type-aliases-package: com.example.spring_transaction.**.entity
