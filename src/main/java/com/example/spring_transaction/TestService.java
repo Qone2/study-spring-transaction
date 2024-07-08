@@ -53,7 +53,7 @@ public class TestService {
     public void nonRepeatableReadTest() {
         User user = userService.getUserById(1L);
         System.out.println("First user: " + user.getName());
-        userService.changeAndCommit(1L, "johnasd");
+        userService.changeAndCommit(1L, "qwe");
         User user2 = userService.getUserById(1L);
         System.out.println("Second user: " + user2.getName());
     }

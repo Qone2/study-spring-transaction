@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.spring_transaction.user.mapper.UserMapper">
-    <insert id="insert" parameterType="map">
+    <insert id="insert" parameterType="map" flushCache="true">
         INSERT INTO user (name) VALUES (#{user.name})
     </insert>
 
-    <select id="count" resultType="long">
+    <select id="count" resultType="long" useCache="false" flushCache="true">
         SELECT COUNT(*) FROM user
     </select>
 
@@ -13,7 +13,7 @@
         SELECT * FROM user WHERE id = #{id}
     </select>
 
-    <update id="update" parameterType="map">
+    <update id="update" parameterType="map" flushCache="true">
         UPDATE user SET name = #{user.name} WHERE id = #{user.id}
     </update>
 </mapper>
