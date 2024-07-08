@@ -4,4 +4,12 @@
     <insert id="insert" parameterType="map">
         INSERT INTO user (name) VALUES (#{user.name})
     </insert>
+
+    <select id="count" resultType="long">
+        SELECT COUNT(*) FROM user
+    </select>
+
+    <select id="selectById" resultType="com.example.spring_transaction.user.entity.User">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
 </mapper>

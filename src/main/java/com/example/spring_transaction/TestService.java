@@ -8,14 +8,12 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-
 @Service
 public class TestService {
     private final UserService userService;
     private final FoodService foodService;
 
-    public TestService(UserService userService, FoodService foodService, EntityManager em) {
+    public TestService(UserService userService, FoodService foodService) {
         this.userService = userService;
         this.foodService = foodService;
     }

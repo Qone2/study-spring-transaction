@@ -7,4 +7,7 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface UserMapper {
     int insert(@Param("user") User user);
+    long count();
+
+    User selectById(@Param("id") Long id);
 }
