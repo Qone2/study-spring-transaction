@@ -10,4 +10,6 @@ public interface UserMapper {
     long count();
 
     User selectById(@Param("id") Long id);
+
+    int update(@Param("user") User user);
 }

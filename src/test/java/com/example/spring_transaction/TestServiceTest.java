@@ -13,17 +13,22 @@ class TestServiceTest {
     private TestService testService;
 
     @Test
-    void readUncommittedTest() {
-        testService.readUncommittedTest();
+    void nonRepeatableReadTest() {
+        testService.nonRepeatableReadTest();
     }
 
     @Test
-    void readCommittedTest() {
-        testService.readCommittedTest();
+    void nonRepeatableReadTest2() {
+        testService.nonRepeatableReadTest2();
     }
 
     @Test
-    void repeatableReadTest() {
-        testService.repeatableReadTest();
+    void nonRepeatableReadAvoided() {
+        testService.nonRepeatableReadAvoided();
+    }
+
+    @Test
+    void nonRepeatableReadAvoided2() {
+        testService.nonRepeatableReadAvoided2();
     }
 }

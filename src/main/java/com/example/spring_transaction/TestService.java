@@ -43,9 +43,55 @@ public class TestService {
     @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void repeatableReadTest() {
         User user = userService.getUserById(1L);
-        userService.changeAndCommit(user);
+        userService.changeAndCommit(1L);
         User user2 = userService.getUserById(1L);
         System.out.println("First user: " + user.getName());
+        System.out.println("Second user: " + user2.getName());
+    }
+
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    public void nonRepeatableReadTest() {
+        User user = userService.getUserById(1L);
+        System.out.println("First user: " + user.getName());
+        userService.changeAndCommit(1L, "johnasd");
+        User user2 = userService.getUserById(1L);
+        System.out.println("Second user: " + user2.getName());
+    }
+
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    public void nonRepeatableReadTest2() {
+        User user = userService.getUserById(1L);
+        System.out.println("First user: " + user.getName());
+        // sleep for 10 seconds
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        User user2 = userService.getUserById(1L);
+        System.out.println("Second user: " + user2.getName());
+    }
+
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
+    public void nonRepeatableReadAvoided() {
+        User user = userService.getUserById(1L);
+        System.out.println("First user: " + user.getName());
+        userService.changeAndCommit(1L, "asd");
+        User user2 = userService.getUserById(1L);
+        System.out.println("Second user: " + user2.getName());
+    }
+
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
+    public void nonRepeatableReadAvoided2() {
+        User user = userService.getUserById(1L);
+        System.out.println("First user: " + user.getName());
+        // sleep for 10 seconds
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        User user2 = userService.getUserById(1L);
         System.out.println("Second user: " + user2.getName());
     }
 }

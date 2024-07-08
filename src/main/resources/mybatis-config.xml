@@ -1,5 +1,6 @@
 <configuration>
     <settings>
         <setting name="logImpl" value="SLF4J"/>
+        <setting name="cacheEnabled" value="false"/>
     </settings>
 </configuration>

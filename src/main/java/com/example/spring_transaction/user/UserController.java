@@ -19,9 +19,6 @@ public class UserController {
 
     @PatchMapping("/user/{id}")
     public void updateUser(@RequestParam String name, @PathVariable Long id) {
-        User user = new User();
-        user.setName(name);
-        user.setId(id);
-        userService.changeAndNotCommit(user);
+        userService.changeAndNotCommit(id, name);
     }
 }

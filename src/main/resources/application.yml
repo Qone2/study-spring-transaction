@@ -6,6 +6,8 @@ spring:
     url: jdbc:mariadb://127.0.0.1:3306/spring_transaction
     username: root
     password: toorroot
+    hikari:
+      auto-commit: false
 logging:
   level:
     org:

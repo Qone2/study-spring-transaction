@@ -11,8 +11,6 @@ class FoodServiceTest {
 
     @Autowired
     private FoodService foodService;
-    @Autowired
-    private FoodRepository foodRepository;
 
     @Test
     void saveAndNotRollback() {

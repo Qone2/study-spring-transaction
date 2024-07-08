@@ -9,7 +9,11 @@
         SELECT COUNT(*) FROM user
     </select>
 
-    <select id="selectById" resultType="com.example.spring_transaction.user.entity.User">
+    <select id="selectById" resultType="com.example.spring_transaction.user.entity.User" useCache="false" flushCache="true">
         SELECT * FROM user WHERE id = #{id}
     </select>
+
+    <update id="update" parameterType="map">
+        UPDATE user SET name = #{user.name} WHERE id = #{user.id}
+    </update>
 </mapper>

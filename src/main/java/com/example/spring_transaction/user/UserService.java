@@ -43,6 +43,14 @@ public class UserService {
         System.out.println("Second count: " + secondCount);
     }
 
+//    public void dirtyReadTest() {
+//        User user = userMapper.selectById(1L);
+//        changeAndNotCommit(user);
+//        long secondCount = userMapper.count();
+//        System.out.println("First count: " + firstCount);
+//        System.out.println("Second count: " + secondCount);
+//    }
+
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public void readCommittedTest() {
         long firstCount = userMapper.count();
@@ -73,7 +81,7 @@ public class UserService {
     public void repeatableReadTest() {
         User user = userMapper.selectById(1L);
         System.out.println("User1: " + user.getName());
-        changeAndCommit(user);
+        changeAndCommit(1L);
         User user2 = userMapper.selectById(1L);
         System.out.println("User2: " + user2.getName());
     }
@@ -83,15 +91,29 @@ public class UserService {
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void changeAndCommit(User user) {
-        user.setName("zxc");
-        userMapper.insert(user);
+    public void changeAndCommit(long id) {
+        changeAndCommit(id, "asd");
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void changeAndCommit(long id, String name) {
+        User newUser = new User();
+        newUser.setId(id);
+        newUser.setName(name);
+        userMapper.update(newUser);
     }
 
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
-    public void changeAndNotCommit(User user) {
+    public void changeAndNotCommit(long id) {
+        changeAndNotCommit(id, "asd");
+    }
 
-        userMapper.insert(user);
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    public void changeAndNotCommit(long id, String name) {
+        User user = new User();
+        user.setId(id);
+        user.setName(name);
+        userMapper.update(user);
     }
 
 //    public void saveAndNotCommitWithEm() {
@@ -114,14 +136,14 @@ public class UserService {
     }
 
     @Transactional
-    public void saveAndRollback() throws Exception {
+    public void saveAndRollback() {
 
         User user = new User();
         user.setName("John Doe");
 
         userMapper.insert(user);
 
-        throw new Exception("Rollback this transaction");
+        throw new RuntimeException("Rollback this transaction");
     }
 
     @Transactional
@@ -134,6 +156,7 @@ public class UserService {
     }
 
 
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void saveAndNotCommit() {
 
         User user = new User();
