@@ -146,7 +146,7 @@ public class UserService {
         throw new RuntimeException("Rollback this transaction");
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void saveAndCommit() {
 
         User user = new User();

@@ -36,4 +36,14 @@ class TestServiceTest {
     void dirtyReadTest() {
         testService.dirtyReadTest();
     }
+
+    @Test
+    void phantomReadTest() {
+        testService.phantomReadTest();
+    }
+
+    @Test
+    void phantomReadAvoided() {
+        testService.phantomReadAvoided();
+    }
 }

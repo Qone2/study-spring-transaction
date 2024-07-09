@@ -86,7 +86,12 @@ public class TestService {
     @Transactional(isolation = Isolation.READ_UNCOMMITTED)
     public void dirtyReadTest() {
         User user = userService.getUserById(1L);
-        userService.changeAndNotCommit(1L, "john");
+//        userService.changeAndNotCommit(1L, "john");
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         User user2 = userService.getUserById(1L);
         System.out.println("First user: " + user.getName());
         System.out.println("Second user: " + user2.getName());
@@ -105,4 +110,22 @@ public class TestService {
 //        User user2 = userService.getUserById(1L);
 //        System.out.println("Second user: " + user2.getName());
 //    }
+
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    public void phantomReadTest() {
+        long firstCount = userService.countUsers();
+        userService.saveAndCommit();
+        long secondCount = userService.countUsers();
+        System.out.println("First count: " + firstCount);
+        System.out.println("Second count: " + secondCount);
+    }
+
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
+    public void phantomReadAvoided() {
+        long firstCount = userService.countUsers();
+        userService.saveAndCommit();
+        long secondCount = userService.countUsers();
+        System.out.println("First count: " + firstCount);
+        System.out.println("Second count: " + secondCount);
+    }
 }
