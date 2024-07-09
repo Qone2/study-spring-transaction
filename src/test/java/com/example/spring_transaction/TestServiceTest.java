@@ -24,7 +24,14 @@ class TestServiceTest {
 
     @Test
     void propagationTest() {
-        testService.propagationTest();
+        assertThrows(RuntimeException.class, () -> testService.propagationTest());
+//        testService.propagationTest();
+    }
+
+    @Test
+    void propagationTest2() {
+        assertThrows(RuntimeException.class, () -> testService.propagationTest2());
+//        testService.propagationTest2();
     }
 
     @Test

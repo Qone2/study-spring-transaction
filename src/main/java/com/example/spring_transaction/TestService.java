@@ -30,7 +30,15 @@ public class TestService {
     @Transactional
     public void propagationTest() {
         userService.saveAndCommit();
-        foodService.saveAndCommitWithException();
+        foodService.saveAndCommit();
+        throw new RuntimeException("Exception occurred");
+    }
+
+    @Transactional
+    public void propagationTest2() {
+        userService.saveAndCommitWithRequired();
+        foodService.saveAndCommitPropRequired();
+        throw new RuntimeException("Exception occurred");
     }
 
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)

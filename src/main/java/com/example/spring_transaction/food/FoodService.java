@@ -23,8 +23,17 @@ public class FoodService {
         throw new RuntimeException("Throwing exception");
     }
 
-    @Transactional()
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void saveAndCommit() {
+
+        Food food = new Food();
+        food.setName("Pizza");
+
+        foodMapper.insert(food);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void saveAndCommitPropRequired() {
 
         Food food = new Food();
         food.setName("Pizza");
@@ -34,6 +43,16 @@ public class FoodService {
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void saveAndCommitWithException() {
+
+        Food food = new Food();
+        food.setName("Pizza");
+
+        foodMapper.insert(food);
+        throw new RuntimeException("Throwing exception");
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void saveAndCommitWithExceptionWithRequired() {
 
         Food food = new Food();
         food.setName("Pizza");

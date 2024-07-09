@@ -155,6 +155,16 @@ public class UserService {
         userMapper.insert(user);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void saveAndCommitWithRequired() {
+
+        User user = new User();
+        user.setName("John Doe");
+
+        userMapper.insert(user);
+    }
+
+
 
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void saveAndNotCommit() {
