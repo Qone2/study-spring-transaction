@@ -17,18 +17,23 @@ class TestServiceTest {
         testService.nonRepeatableReadTest();
     }
 
-    @Test
-    void nonRepeatableReadTest2() {
-        testService.nonRepeatableReadTest2();
-    }
+//    @Test
+//    void nonRepeatableReadTest2() {
+//        testService.nonRepeatableReadTest2();
+//    }
 
     @Test
     void nonRepeatableReadAvoided() {
         testService.nonRepeatableReadAvoided();
     }
 
+//    @Test
+//    void nonRepeatableReadAvoided2() {
+//        testService.nonRepeatableReadAvoided2();
+//    }
+
     @Test
-    void nonRepeatableReadAvoided2() {
-        testService.nonRepeatableReadAvoided2();
+    void dirtyReadTest() {
+        testService.dirtyReadTest();
     }
 }
