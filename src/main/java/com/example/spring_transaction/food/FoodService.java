@@ -4,6 +4,7 @@ import com.example.spring_transaction.food.entity.Food;
 import com.example.spring_transaction.food.mapper.FoodMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -29,5 +30,15 @@ public class FoodService {
         food.setName("Pizza");
 
         foodMapper.insert(food);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void saveAndCommitWithException() {
+
+        Food food = new Food();
+        food.setName("Pizza");
+
+        foodMapper.insert(food);
+        throw new RuntimeException("Throwing exception");
     }
 }

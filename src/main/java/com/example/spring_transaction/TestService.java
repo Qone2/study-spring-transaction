@@ -27,6 +27,12 @@ public class TestService {
         System.out.println("Second count: " + secondCount);
     }
 
+    @Transactional
+    public void propagationTest() {
+        userService.saveAndCommit();
+        foodService.saveAndCommitWithException();
+    }
+
     @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRES_NEW)
     public void readCommittedTest() {
         long firstCount = userService.countUsers();

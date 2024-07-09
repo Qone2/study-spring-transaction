@@ -23,6 +23,11 @@ class TestServiceTest {
 //    }
 
     @Test
+    void propagationTest() {
+        testService.propagationTest();
+    }
+
+    @Test
     void nonRepeatableReadAvoided() {
         testService.nonRepeatableReadAvoided();
     }
