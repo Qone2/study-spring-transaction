@@ -65,4 +65,9 @@ class UserServiceTest {
         User user = userService.getUserById(1L);
         userService.changeAndCommit(1L);
     }
+
+    @Test
+    void foreachTest() {
+        userService.insertUsers();
+    }
 }

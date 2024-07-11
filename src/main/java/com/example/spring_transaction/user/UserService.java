@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -177,5 +180,25 @@ public class UserService {
 
     public long countUsers() {
         return userMapper.count();
+    }
+
+    public void insertUsers() {
+//        List<User> users = new ArrayList<>();
+        User[] users = new User[3];
+        User user1 = new User();
+        user1.setName("user1");
+        User user2 = new User();
+        user2.setName("user2");
+        User user3 = new User();
+        user3.setName("user3");
+
+//        users.add(user1);
+//        users.add(user2);
+//        users.add(user3);
+        users[0] = user1;
+        users[1] = user2;
+        users[2] = user3;
+
+        userMapper.insertAll(users);
     }
 }

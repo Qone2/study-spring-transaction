@@ -16,4 +16,11 @@
     <update id="update" parameterType="map" flushCache="true">
         UPDATE user SET name = #{user.name} WHERE id = #{user.id}
     </update>
+
+    <insert id="insertAll">
+        INSERT INTO user (name) VALUES
+        <foreach collection="users" item="user" separator=",">
+            (#{user.name})
+        </foreach>
+    </insert>
 </mapper>
